@@ -493,6 +493,8 @@ declare module "objection" {
   export interface transaction {
     start(knexOrModel: knex | ModelClass<any>): Promise<Transaction>;
 
+    <T>(knex: knex, callback: (trx: Transaction) => Promise<T>): Promise<T>;
+
     <MC extends ModelClass<any>, T>(
       modelClass: MC,
       callback: (boundModelClass: MC) => Promise<T>
